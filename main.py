@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 """ Expected Daily Demand Parameters """
 lambda_m = 5.0   # Morning expected demand (rate * hour: 1 * 5 = 5)
-lambda_a = 105.0 # Afternoon expected demand (rate * hour: 17.6 * 6 = 105)
+lambda_a = 105.0 # Afternoon expected demand (rate * hour: 17.5 * 6 = 105)
 lambda_e = 10.0  # Evening expected demand (rate * hour: 1 * 10 = 10)
 
 
@@ -56,7 +56,7 @@ def calculate_profits(Q, Dm_array, Da_array, De_array):
             leftovers = Q - Dm - Da - De
             pi = (2.00 * Dm) + (1.50 * Da) + (1.00 * De) + (0.50 * leftovers) - (1.00 * Q)
             
-        profits.append(pi) # Adds net profit to each dau in the profits array 
+        profits.append(pi) # Adds net profit to each day in the profits array 
         
     return np.array(profits)
 
@@ -73,7 +73,6 @@ print("Maximum Profit:", round(np.max(profits1),2))
 
 plt.figure(figsize=(8, 6))
 plt.hist(profits1, bins=15,color='steelblue', edgecolor='black')
-
 plt.xlabel('Profit ($)')
 plt.ylabel('Frequency')
 plt.title('Daily Profit Distribution (Q = 75)')
@@ -99,7 +98,6 @@ print("Maximum Period Mean:", round(np.max(periodmean), 2))
 
 plt.figure(figsize=(8, 6))
 plt.hist(periodmean, bins=15,color='steelblue', edgecolor='black')
-
 plt.xlabel('91-Day Mean Daily Profit ($)')
 plt.ylabel('Frequency')
 plt.title('Distribution of Mean Daily Profit for 5,000 91-Day Periods')
@@ -147,15 +145,12 @@ for q in q_values:
 
 profits4 = np.array(profits4)
 
-
 plt.figure(figsize=(8, 6))
 plt.plot(q_values, profits4, color='steelblue', marker='o', markersize=3, linestyle='-')
-
 plt.xlabel('Order Quantity (Q)')
 plt.ylabel('Estimated Expected Daily Profit ($)')
 plt.title('Expected Daily Profit vs. Order Quantity (Q)')
 plt.grid(True, linestyle='--', alpha=0.5)
-
 plt.show()
 
 
