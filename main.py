@@ -5,7 +5,6 @@ Created on Sat Oct  3 17:37:10 2026
 BUAI 433 Project: Ice Cream Simulation
 @author: Emi Hutter-DeMarco, Caroline Kilbane, Jerry Cai
 """
-# Notes: more comments especially for question answers, check quote syntax
 import numpy as np
 import matplotlib.pyplot as plt
 
