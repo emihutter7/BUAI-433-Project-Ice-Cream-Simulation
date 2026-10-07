@@ -151,7 +151,7 @@ plt.plot(q_values, profits4, color='steelblue', marker='o', markersize=3, linest
 plt.xlabel('Order Quantity (Q)')
 plt.ylabel('Estimated Expected Daily Profit ($)')
 plt.title('Expected Daily Profit vs. Order Quantity (Q)')
-plt.grid(True, linestyle='--', alpha=0.5)
+plt.grid(True, linestyle='-', alpha=0.5)
 plt.show()
 
 
