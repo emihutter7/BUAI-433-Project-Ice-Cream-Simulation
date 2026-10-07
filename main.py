@@ -10,29 +10,33 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """ Expected Daily Demand Parameters """
-lambda_m = 5.0   # Morning expected demand
-lambda_a = 105.0 # Afternoon expected demand
-lambda_e = 10.0  # Evening expected demand
+lambda_m = 5.0   # Morning expected demand (rate * hour: 1 * 5 = 5)
+lambda_a = 105.0 # Afternoon expected demand (rate * hour: 17.6 * 6 = 105)
+lambda_e = 10.0  # Evening expected demand (rate * hour: 1 * 10 = 10)
 
 
 """
-Generates Poisson-distributed demands for the three 
-independent daily periods. This creates arrays (lists) of 
-demands for each day.
+Generates demands using Poisson distribution for the three daily periods. 
+This creates arrays (lists) of demands for each day.
 """
 def demands(num_days):
-    Dm = np.random.poisson(lambda_m, num_days) # looked up numpy poission functions
-    Da = np.random.poisson(lambda_a, num_days)
-    De = np.random.poisson(lambda_e, num_days)
+    # Generates random demand values for the number of days where the average
+    # demand is lambda (i.e. if there are 4 days, then a possible Dm = [12, 5, 11, 9])
+    Dm = np.random.poisson(lambda_m, num_days) # Stores morning demands for each day
+    Da = np.random.poisson(lambda_a, num_days) # Stores afternoon demands for each day
+    De = np.random.poisson(lambda_e, num_days) # Stores evening demands for each day
+    # Looked up numpy poission functions in documentation
     return Dm, Da, De
 
 
 """
-Loops through the arrays of daily demands and applies your 4 cases 
+Loops through the arrays of daily demands and applies method
 to calculate the profit for each simulated day.
 """
 def calculate_profits(Q, Dm_array, Da_array, De_array):
+    # Make profits an array since we are calculating one profit value for every day
     profits = []
+    # Chose Dm array, but realistically could choose any of the three as they all have the same length
     num_days = len(Dm_array)
     
     for i in range(num_days):
@@ -41,6 +45,7 @@ def calculate_profits(Q, Dm_array, Da_array, De_array):
         Da = Da_array[i]
         De = De_array[i]
         
+        # pi represents net profit
         if Dm >= Q: # Sell out before noon
             pi = (2.00 * Q) - (1.00 * Q)
         elif Q <= (Dm + Da): # Sell out in afternoon 
@@ -51,10 +56,9 @@ def calculate_profits(Q, Dm_array, Da_array, De_array):
             leftovers = Q - Dm - Da - De
             pi = (2.00 * Dm) + (1.50 * Da) + (1.00 * De) + (0.50 * leftovers) - (1.00 * Q)
             
-        profits.append(pi)
+        profits.append(pi) # Adds net profit to each dau in the profits array 
         
     return np.array(profits)
-
 
 
 """ \n ------- Question 1 -------"""
@@ -100,7 +104,6 @@ plt.xlabel('91-Day Mean Daily Profit ($)')
 plt.ylabel('Frequency')
 plt.title('Distribution of Mean Daily Profit for 5,000 91-Day Periods')
 plt.show()
-
 
 
 """ ------- Question 3 -------"""
