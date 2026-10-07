@@ -83,6 +83,7 @@ plt.show()
 """ ------- Question 2 -------"""
 periodmean = []
 
+# Simulates 5000 91-day periods 
 for i in range(5000):
     Dm2, Da2, De2 = demands(91)
     profits2 = calculate_profits(75, Dm2, Da2, De2)
@@ -139,6 +140,7 @@ print("10-Year (3,650 Days) Mean Daily Profit:", round(mean3, 2))
 q_values = np.arange(50, 151)
 profits4 = []
 
+# For each q from 50 to 150, estimate 3650 days from question 3
 for q in q_values:
     q_profits = calculate_profits(q, Dm3, Da3, De3)
     profits4.append(np.mean(q_profits))
