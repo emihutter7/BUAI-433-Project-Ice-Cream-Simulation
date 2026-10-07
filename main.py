@@ -164,6 +164,6 @@ max_expected_profit = profits4[optimal_index]
 
 print("\n ------ Question 5 Statistics ---")
 print("Recommended Daily Order Quantity (Q*):", recommended_Q)
-print("Maximum Estimated Expected Daily Profit:", max_expected_profit)
+print("Maximum Estimated Expected Daily Profit:", round(max_expected_profit,2))
 
 
